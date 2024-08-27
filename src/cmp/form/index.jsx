@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import InputMask from 'react-input-mask';
+import styles from './form.module.css';
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -16,9 +17,11 @@ const Form = () => {
   
   return (
     <form >
+        <div className = {styles.header}>Транспортные средства и водители</div>
       <div>
         <label>Гос-номер</label>
         <InputMask
+          type='text'
           mask="a999aa99"
           maskChar=""
           value={formData.gosNumber}
@@ -60,6 +63,7 @@ const Form = () => {
         <label>Паспортные данные</label>
         <div>
           <InputMask
+            type='text'
             mask="9999"
             maskChar=""
             value={formData.passportSeries}
@@ -68,6 +72,7 @@ const Form = () => {
             required
           />
           <InputMask
+            type='text'
             mask="999999"
             maskChar=""
             value={formData.passportNumber}

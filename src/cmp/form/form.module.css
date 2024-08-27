@@ -1,0 +1,57 @@
+form {
+    width: 90vw;
+    max-width: 400px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 10px; 
+    font-family: 'Arial', sans-serif; 
+  }
+  
+  label {
+    display: block; 
+    margin-bottom: 8px; 
+    font-size: 12px;
+  }
+  
+  input[type="text"], input[type="date"], button {
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: 15px;
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-sizing: border-box; 
+    font-size: 10px; 
+  }
+  
+  
+  button {
+    display: inline-block; 
+    width: calc(50% - 10px); 
+    padding: 10px; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer; 
+  }
+  
+  button[type="submit"] {
+    background-color: black; 
+    color: white; 
+  }
+  
+  button[type="button"] {
+    background-color: white;
+    color: black; 
+    border: 1px solid #ccc; 
+  }
+  
+  button[type="submit"]:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .header { 
+    font-weight: bold;
+    padding-bottom: 20px;
+  }
