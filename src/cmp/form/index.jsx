@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import InputMask from 'react-input-mask';
 import styles from './form.module.css';
 
 const Form = () => {
@@ -14,15 +13,39 @@ const Form = () => {
     issuedDate: ''
   });
 
+  const clear = () => {
+    setFormData({
+      gosNumber: '',
+      vehicle: '',
+      arrivalDate: '',
+      driverName: '',
+      passportSeries: '',
+      passportNumber: '',
+      issuedBy: '',
+      issuedDate: ''
+    });
+  };
+
+  useEffect(() => {
+    const savedData = localStorage.getItem('formData');
+    if (savedData) {
+      setFormData(JSON.parse(savedData));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('formData', JSON.stringify(formData));
+  }, [formData]);
+
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     const isValid =
-      (formData.gosNumber.length === 8 || formData.gosNumber.length === 9) && 
+      (formData.gosNumber.length === 9 || formData.gosNumber.length === 8)  &&
       formData.vehicle &&
       formData.arrivalDate &&
       formData.driverName &&
-      formData.passportSeries.length === 4 &&  
+      formData.passportSeries.length === 4 &&
       formData.passportNumber.length === 6 &&
       formData.issuedBy &&
       formData.issuedDate;
@@ -37,22 +60,24 @@ const Form = () => {
       [name]: value
     });
   };
-  
+
   const submit = (e) => {
     e.preventDefault();
     if (isFormValid) {
       alert('Форма отправлена!');
+      clear();
     }
   };
+
   return (
     <form onSubmit={submit}>
-        <div className = {styles.header}>Транспортные средства и водители</div>
+      <div className={styles.header}>Транспортные средства и водители</div>
       <div>
         <label>Гос-номер</label>
-        <InputMask
+        <input
           type='text'
-          mask="a999aa999"
-          maskChar=""
+          pattern="[АВЕКМНОРСТУХ]\d{3}(?<!000)[АВЕКМНОРСТУХ]{2}\d{2,3}"
+          title="Гос-номер должен быть в формате: A999AA999"
           value={formData.gosNumber}
           name="gosNumber"
           placeholder="Укажите гос-номер"
@@ -95,29 +120,29 @@ const Form = () => {
           />
         </div>
         <div>
-            <label>Паспортные данные</label>
-              <div className={styles.pass}>
-                <InputMask
-                  type='text'
-                  mask="9999"
-                  maskChar=""
-                  value={formData.passportSeries}
-                  name="passportSeries"
-                  placeholder="Серия"
-                  onChange={change}
-                  required
-                />
-                <InputMask
-                  type='text'
-                  mask="999999"
-                  maskChar=""
-                  value={formData.passportNumber}
-                  name="passportNumber"
-                  placeholder="Номер"
-                  onChange={change}
-                  required
-                />
-            </div>
+          <label>Паспортные данные</label>
+          <div className={styles.pass}>
+            <input
+              type='text'
+              pattern="\d{4}"
+              title="Серия паспорта должна содержать 4 цифры"
+              value={formData.passportSeries}
+              name="passportSeries"
+              placeholder="Серия"
+              onChange={change}
+              required
+            />
+            <input
+              type='text'
+              pattern="\d{6}"
+              title="Номер паспорта должен содержать 6 цифр"
+              value={formData.passportNumber}
+              name="passportNumber"
+              placeholder="Номер"
+              onChange={change}
+              required
+            />
+          </div>
         </div>
         <div>
           <label>Кем выдан</label>
@@ -142,14 +167,13 @@ const Form = () => {
         </div>
       </div>
       <div className={styles.btns}>
-        <button type="submit">
+        <button type="submit" disabled = {isFormValid ? false : true}>
           Отправить
         </button>
-        <button type="button" onClick={() => window.location.reload()}>
+        <button type="button" onClick={clear}>
           Отменить
         </button>
       </div>
-      
     </form>
   );
 };

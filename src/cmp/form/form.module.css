@@ -1,11 +1,12 @@
 form {
     width: 90vw;
     max-width: 400px; 
-    margin: 0 auto; 
     padding: 20px; 
     border: 1px solid #ccc; 
     border-radius: 10px; 
-    font-family: 'Arial', sans-serif; 
+    font-family: 'Arial', sans-serif;
+    overflow: auto;
+    max-height: 95vh;
   }
   
   label {
