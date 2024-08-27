@@ -14,6 +14,22 @@ const Form = () => {
     issuedDate: ''
   });
 
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    const isValid =
+      (formData.gosNumber.length === 8 || formData.gosNumber.length === 9) && 
+      formData.vehicle &&
+      formData.arrivalDate &&
+      formData.driverName &&
+      formData.passportSeries.length === 4 &&  
+      formData.passportNumber.length === 6 &&
+      formData.issuedBy &&
+      formData.issuedDate;
+
+    setIsFormValid(isValid);
+  }, [formData]);
+
   const change = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -22,8 +38,14 @@ const Form = () => {
     });
   };
   
+  const submit = (e) => {
+    e.preventDefault();
+    if (isFormValid) {
+      alert('Форма отправлена!');
+    }
+  };
   return (
-    <form >
+    <form onSubmit={submit}>
         <div className = {styles.header}>Транспортные средства и водители</div>
       <div>
         <label>Гос-номер</label>
