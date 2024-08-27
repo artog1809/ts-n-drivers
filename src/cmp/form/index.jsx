@@ -14,6 +14,13 @@ const Form = () => {
     issuedDate: ''
   });
 
+  const change = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
   
   return (
     <form >
@@ -22,11 +29,12 @@ const Form = () => {
         <label>Гос-номер</label>
         <InputMask
           type='text'
-          mask="a999aa99"
+          mask="a999aa999"
           maskChar=""
           value={formData.gosNumber}
           name="gosNumber"
           placeholder="Укажите гос-номер"
+          onChange={change}
           required
         />
       </div>
@@ -37,6 +45,7 @@ const Form = () => {
           value={formData.vehicle}
           name="vehicle"
           placeholder="Транспортное средство"
+          onChange={change}
           required
         />
       </div>
@@ -46,6 +55,7 @@ const Form = () => {
           type="date"
           value={formData.arrivalDate}
           name="arrivalDate"
+          onChange={change}
           required
         />
       </div>
@@ -58,6 +68,7 @@ const Form = () => {
             value={formData.driverName}
             name="driverName"
             placeholder="Укажите ФИО водителя"
+            onChange={change}
             required
           />
         </div>
@@ -71,6 +82,7 @@ const Form = () => {
                   value={formData.passportSeries}
                   name="passportSeries"
                   placeholder="Серия"
+                  onChange={change}
                   required
                 />
                 <InputMask
@@ -80,6 +92,7 @@ const Form = () => {
                   value={formData.passportNumber}
                   name="passportNumber"
                   placeholder="Номер"
+                  onChange={change}
                   required
                 />
             </div>
@@ -91,6 +104,7 @@ const Form = () => {
             value={formData.issuedBy}
             name="issuedBy"
             placeholder="Кем выдан"
+            onChange={change}
             required
           />
         </div>
@@ -100,6 +114,7 @@ const Form = () => {
             type="date"
             value={formData.issuedDate}
             name="issuedDate"
+            onChange={change}
             required
           />
         </div>
