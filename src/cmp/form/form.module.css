@@ -27,11 +27,12 @@ form {
   
   button {
     display: inline-block; 
-    width: calc(50% - 10px); 
+    width: 50%;
+    max-width: 100px; 
     padding: 10px; 
     border: none; 
     border-radius: 5px; 
-    font-size: 16px; 
+    font-size: 12px; 
     cursor: pointer; 
   }
   
@@ -54,4 +55,21 @@ form {
   .header { 
     font-weight: bold;
     padding-bottom: 20px;
+  }
+
+  .info {
+    font-weight: bold;
+    font-size: 14px;
+    padding-bottom: 20px;
+  }
+
+  .pass {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .btns {
+    display: flex;
+    gap: 20px;
   }

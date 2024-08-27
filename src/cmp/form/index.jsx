@@ -49,64 +49,70 @@ const Form = () => {
           required
         />
       </div>
-      <div>
-        <label>ФИО водителя</label>
-        <input
-          type="text"
-          value={formData.driverName}
-          name="driverName"
-          placeholder="Укажите ФИО водителя"
-          required
-        />
-      </div>
-      <div>
-        <label>Паспортные данные</label>
+      <div className={styles.driver}>
+        <div className={styles.info}>Данные о водителе</div>
         <div>
-          <InputMask
-            type='text'
-            mask="9999"
-            maskChar=""
-            value={formData.passportSeries}
-            name="passportSeries"
-            placeholder="Серия"
+          <label>ФИО водителя</label>
+          <input
+            type="text"
+            value={formData.driverName}
+            name="driverName"
+            placeholder="Укажите ФИО водителя"
             required
           />
-          <InputMask
-            type='text'
-            mask="999999"
-            maskChar=""
-            value={formData.passportNumber}
-            name="passportNumber"
-            placeholder="Номер"
+        </div>
+        <div>
+            <label>Паспортные данные</label>
+              <div className={styles.pass}>
+                <InputMask
+                  type='text'
+                  mask="9999"
+                  maskChar=""
+                  value={formData.passportSeries}
+                  name="passportSeries"
+                  placeholder="Серия"
+                  required
+                />
+                <InputMask
+                  type='text'
+                  mask="999999"
+                  maskChar=""
+                  value={formData.passportNumber}
+                  name="passportNumber"
+                  placeholder="Номер"
+                  required
+                />
+            </div>
+        </div>
+        <div>
+          <label>Кем выдан</label>
+          <input
+            type="text"
+            value={formData.issuedBy}
+            name="issuedBy"
+            placeholder="Кем выдан"
+            required
+          />
+        </div>
+        <div>
+          <label>Когда выдан</label>
+          <input
+            type="date"
+            value={formData.issuedDate}
+            name="issuedDate"
             required
           />
         </div>
       </div>
-      <div>
-        <label>Кем выдан</label>
-        <input
-          type="text"
-          value={formData.issuedBy}
-          name="issuedBy"
-          placeholder="Кем выдан"
-          required
-        />
+      <div className={styles.btns}>
+        <button type="submit">
+          Отправить
+        </button>
+        <button type="button" onClick={() => window.location.reload()}>
+          Отменить
+        </button>
       </div>
-      <div>
-        <label>Когда выдан</label>
-        <input
-          type="date"
-          value={formData.issuedDate}
-          name="issuedDate"
-          required
-        />
-      </div>
-      <button type="submit">
-        Отправить
-      </button>
-      <button type="button" onClick={() => window.location.reload()}>
-        Отменить
-      </button>
+      
     </form>
   );
 };
